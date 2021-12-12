@@ -22,6 +22,13 @@ app.use(router);
 
 io.on('connect', (socket) => {
 
+	socket.on('camerajoin', function() {
+    socket.emit('message', {
+      user: 'admin',
+      text: `camera has joined.`
+    });
+  });
+
 
   socket.on('join', ({ name, room }, callback) => {
     const { error, user } = addUser({ id: socket.id, name, room });
